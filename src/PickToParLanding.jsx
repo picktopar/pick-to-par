@@ -25,6 +25,7 @@ export default function PickToParLanding() {
         <section className="bg-green-100 bg-opacity-90 p-4 md:p-6 rounded-xl w-full max-w-xl text-center mb-10 shadow-lg">
           <h2 className="text-xl md:text-2xl font-semibold mb-4 text-green-900">How It Works</h2>
           <ul className="text-green-800 space-y-2 text-sm md:text-base">
+            <li>📊 Choose players based on <a href=\"https://datagolf.com/current-form\" target=\"_blank\" rel=\"noopener noreferrer\" className=\"underline text-green-900 font-semibold\">Data Golf Rankings</a></li>
             <li>✅ Pick 1 player from the Top 10</li>
             <li>✅ 1 from the Top 20 (not in Top 10)</li>
             <li>✅ 1 from the Top 30 (not in Top 20)</li>
