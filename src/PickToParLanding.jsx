@@ -47,13 +47,23 @@ export default function PickToParLanding() {
           <p className="text-green-800 mb-4 text-sm md:text-base">
             Final scores from The Masters will be updated here.
           </p>
-          <ul className="text-green-900 text-left space-y-2 text-sm md:text-base">
-            <li>1. Sarah M. – 42</li>
-            <li>2. James K. – 47</li>
-            <li>3. Devin L. – 49</li>
-            <li>4. Priya N. – 52</li>
-            <li>5. Tyler W. – 55</li>
-          </ul>
+          <iframe
+  src="https://docs.google.com/spreadsheets/d/e/YOUR_GOOGLE_SHEET_ID/pubhtml?widget=true&amp;headers=false"
+  className="w-full h-[600px] rounded-xl border-none shadow-md"
+  title="Live Leaderboard from Google Sheets"
+></iframe>
+        </section>
+
+        <section className="bg-green-100 bg-opacity-90 p-4 md:p-6 rounded-xl w-full max-w-xl text-center shadow-lg mb-10">
+          <h2 className="text-xl md:text-2xl font-semibold mb-4 text-green-900">👥 Who’s In?</h2>
+          <p className="text-green-800 mb-4 text-sm md:text-base">
+            Live list of everyone who has submitted their team picks.
+          </p>
+          <iframe
+            src=\"https://docs.google.com/spreadsheets/d/e/2PACX-1vTFQU30eyGAX_I-XyC7coN2UqWwiDNVyURvdOraAeeG9_40l-hx1LHaXbJAcbf4Dj43i5xT9z_ARtPW/pubhtml?gid=0&amp;single=true&amp;widget=true&amp;headers=false\"
+            className="w-full h-[600px] rounded-xl border-none shadow-md"
+            title="Team Entries"
+          ></iframe>
         </section>
 
         <section className="bg-green-100 bg-opacity-90 p-4 md:p-6 rounded-xl w-full max-w-4xl text-center shadow-lg">
