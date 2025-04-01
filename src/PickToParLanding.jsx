@@ -1,7 +1,6 @@
 
 
 import React, { useState, useEffect, useState as useComponentState } from "react";
-import Papa from "papaparse";
 
 function Leaderboard() {
   const [data, setData] = useComponentState([]);
