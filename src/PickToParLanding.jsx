@@ -103,13 +103,6 @@ export default function PickToParLanding() {
             className="text-left space-y-4"
             onSubmit={(e) => {
               e.preventDefault();
-              const formData = {
-                name: e.target.name.value,
-                top10: e.target.top10.value,
-                top20: e.target.top20.value,
-                top30: e.target.top30.value,
-                wildcard: e.target.wildcard.value,
-              };
               e.preventDefault();
               const formData = {
   name: e.target.name.value,
