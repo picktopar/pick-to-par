@@ -48,6 +48,30 @@ function Leaderboard() {
 
 export default function PickToParLanding() {
   const [showLeaderboard, setShowLeaderboard] = useState(false);
+  const [rankings, setRankings] = useState([]);
+
+  useEffect(() => {
+    fetch("https://datagolf.com/api/rankings/world?format=csv")
+      .then((res) => res.text())
+      .then((csv) => {
+        Papa.parse(csv, {
+          header: true,
+          skipEmptyLines: true,
+          complete: (results) => setRankings(results.data),
+        });
+      });
+  }, []);
+
+  const getTierOptions = (start, end) =>
+    rankings.slice(start - 1, end).map((player, i) => (
+      <option key={i} value={player.Player}>{player.Player}</option>
+    ));
+
+  const getWildcardOptions = () =>
+    rankings.slice(30).map((player, i) => (
+      <option key={i} value={player.Player}>{player.Player}</option>
+    ));
+  const [showLeaderboard, setShowLeaderboard] = useState(false);
 
   return (
     <div
@@ -106,26 +130,30 @@ export default function PickToParLanding() {
     <div>
       <label htmlFor="top10" className="block text-green-900 font-semibold mb-1">Top 10 Player</label>
       <select name="top10" id="top10" className="w-full px-4 py-2 rounded border">
-        <option value="">Loading...</option>
-      </select>
+  <option value="">Select</option>
+  {getTierOptions(1, 10)}
+</select>
     </div>
     <div>
       <label htmlFor="top20" className="block text-green-900 font-semibold mb-1">Top 20 Player (not in Top 10)</label>
       <select name="top20" id="top20" className="w-full px-4 py-2 rounded border">
-        <option value="">Loading...</option>
-      </select>
+  <option value="">Select</option>
+  {getTierOptions(11, 20)}
+</select>
     </div>
     <div>
       <label htmlFor="top30" className="block text-green-900 font-semibold mb-1">Top 30 Player (not in Top 20)</label>
       <select name="top30" id="top30" className="w-full px-4 py-2 rounded border">
-        <option value="">Loading...</option>
-      </select>
+  <option value="">Select</option>
+  {getTierOptions(21, 30)}
+</select>
     </div>
     <div>
       <label htmlFor="wildcard" className="block text-green-900 font-semibold mb-1">Wildcard (outside Top 30)</label>
       <select name="wildcard" id="wildcard" className="w-full px-4 py-2 rounded border">
-        <option value="">Loading...</option>
-      </select>
+  <option value="">Select</option>
+  {getWildcardOptions()}
+</select>
     </div>
     <button type="submit" className="bg-green-700 hover:bg-green-800 text-white px-6 py-2 rounded-xl shadow">Submit Picks</button>
   </form>
