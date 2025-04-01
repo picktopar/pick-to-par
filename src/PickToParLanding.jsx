@@ -47,7 +47,7 @@ function Leaderboard() {
 }
 
 export default function PickToParLanding() {
-  const [showLeaderboard, setShowLeaderboard] = useState(false);
+  
   const [rankings, setRankings] = useState([]);
 
   useEffect(() => {
@@ -71,7 +71,7 @@ export default function PickToParLanding() {
     rankings.slice(30).map((player, i) => (
       <option key={i} value={player.Player}>{player.Player}</option>
     ));
-  const [showLeaderboard, setShowLeaderboard] = useState(false);
+  
 
   return (
     <div
