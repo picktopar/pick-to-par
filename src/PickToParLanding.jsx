@@ -103,14 +103,13 @@ export default function PickToParLanding() {
             className="text-left space-y-4"
             onSubmit={(e) => {
               e.preventDefault();
-              e.preventDefault();
               const formData = {
-  name: e.target.name.value,
-  top10: e.target.top10.value,
-  top20: e.target.top20.value,
-  top30: e.target.top30.value,
-  wildcard: e.target.wildcard.value,
-};
+                name: e.target.name.value,
+                top10: e.target.top10.value,
+                top20: e.target.top20.value,
+                top30: e.target.top30.value,
+                wildcard: e.target.wildcard.value,
+              };
 
               fetch("https://script.google.com/macros/s/AKfycbyLMmSxNuzE0epPUJwheMF0-x-R4vUY2s-Ho4eLO9UdUrzSKaNfssO9jvGvQcIzsHd_0g/exec", {
                 method: "POST",
@@ -122,9 +121,12 @@ export default function PickToParLanding() {
                 .then((res) => res.json())
                 .then((data) => alert("Picks submitted successfully!"))
                 .catch((err) => alert("Something went wrong."));
-            }}
-          >
-            <div>
+            }}>
+  <div>
+    <label htmlFor="name" className="block text-green-900 font-semibold mb-1">Your Name</label>
+    <input type="text" name="name" id="name" placeholder="Enter your name" className="w-full px-4 py-2 rounded border" required />
+  </div>
+  <div>
               <label htmlFor="top10" className="block text-green-900 font-semibold mb-1">Top 10 Player</label>
               <select name="top10" id="top10" className="w-full px-4 py-2 rounded border">
                 <option value="">Select</option>
