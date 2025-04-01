@@ -60,7 +60,7 @@ export default function PickToParLanding() {
             Live list of everyone who has submitted their team picks.
           </p>
           <iframe
-            src=\"https://docs.google.com/spreadsheets/d/e/2PACX-1vTFQU30eyGAX_I-XyC7coN2UqWwiDNVyURvdOraAeeG9_40l-hx1LHaXbJAcbf4Dj43i5xT9z_ARtPW/pubhtml?gid=0&amp;single=true&amp;widget=true&amp;headers=false\"
+            src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTFQU30eyGAX_I-XyC7coN2UqWwiDNVyURvdOraAeeG9_40l-hx1LHaXbJAcbf4Dj43i5xT9z_ARtPW/pubhtml?gid=0&amp;single=true&amp;widget=true&amp;headers=false"
             className="w-full h-[600px] rounded-xl border-none shadow-md"
             title="Team Entries"
           ></iframe>
