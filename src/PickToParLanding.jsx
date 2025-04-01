@@ -46,38 +46,6 @@ function Leaderboard() {
   );
 }
 
-function PickForm() {
-  const [rankings, setRankings] = useState([]);
-
-  useEffect(() => {
-    fetch("https://datagolf.com/api/rankings/world?format=csv")
-      .then(res => res.text())
-      .then(csv => {
-        Papa.parse(csv, {
-          header: true,
-          skipEmptyLines: true,
-          complete: (results) => setRankings(results.data)
-        });
-      });
-  }, []);
-
-  const getTier = (start, end) => {
-    return rankings.slice(start - 1, end).map((player, i) => (
-      <option key={i} value={player.Player}>{player.Player}</option>
-    ));
-  };
-
-  const getWildcard = () => {
-    return rankings.slice(30).map((player, i) => (
-      <option key={i} value={player.Player}>{player.Player}</option>
-    ));
-  };
-
-  return (
-    <PickForm />
-  );
-}
-
 export default function PickToParLanding() {
   const [showLeaderboard, setShowLeaderboard] = useState(false);
 
