@@ -1,8 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&display=swap');
 
-.font-augusta {
-  font-family: 'Playfair Display', serif;
-}
 
 import React, { useState } from "react";
 
@@ -102,4 +98,3 @@ export default function PickToParLanding() {
     </div>
   );
 }
-
