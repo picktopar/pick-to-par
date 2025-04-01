@@ -19,7 +19,9 @@ function Leaderboard() {
   }, []);
 
   return (
-    <div className="overflow-x-auto">
+    <div className="overflow-x-auto max-w-full">
+      <div className="w-full overflow-hidden">
+        <div className="min-w-full">
       <table className="table-auto w-full text-left border-collapse">
         <thead>
           <tr className="bg-green-700 text-white">
@@ -38,6 +40,8 @@ function Leaderboard() {
           ))}
         </tbody>
       </table>
+        </div>
+      </div>
     </div>
   );
 }
@@ -56,13 +60,7 @@ export default function PickToParLanding() {
       </header>
 
       <main className="flex flex-col items-center px-4">
-        <img
-          src="/pick_to_par_simple_logo.png"
-          alt="Pick to Par Logo"
-          className="w-48 md:w-64 mb-6"
-        />
-
-        <section className="bg-green-100 bg-opacity-90 p-4 md:p-6 rounded-xl w-full max-w-xl text-center mb-10 shadow-lg">
+                <section className="bg-green-100 bg-opacity-90 p-4 md:p-6 rounded-xl w-full max-w-xl text-center mb-10 shadow-lg">
           <h2 className="text-xl md:text-2xl font-semibold mb-4 text-green-900">How It Works</h2>
           <ul className="text-green-800 space-y-2 text-sm md:text-base">
             <li>📊 Choose players based on <a href="https://datagolf.com/datagolf-rankings" target="_blank" rel="noopener noreferrer" className="underline text-green-900 font-semibold">Data Golf Rankings</a></li>
@@ -87,7 +85,19 @@ export default function PickToParLanding() {
 
         
 
-        <section className="bg-green-100 bg-opacity-90 p-4 md:p-6 rounded-xl w-full max-w-xl text-center shadow-lg mb-10">
+        <section className="bg-green-100 bg-opacity-90 p-4 md:p-6 rounded-xl w-full max-w-4xl text-center shadow-lg mb-10">
+  <h2 className="text-xl md:text-2xl font-semibold mb-4 text-green-900">📈 Data Golf Rankings</h2>
+  <p className="text-green-800 mb-4 text-sm md:text-base">
+    View the latest Data Golf rankings directly from their site.
+  </p>
+  <iframe
+    src="https://datagolf.com/datagolf-rankings"
+    className="w-full h-[600px] rounded-xl border-none shadow-md"
+    title="Data Golf Rankings"
+  ></iframe>
+</section>
+
+<section className="bg-green-100 bg-opacity-90 p-4 md:p-6 rounded-xl w-full max-w-xl text-center shadow-lg mb-10">
   <h2 className="text-xl md:text-2xl font-semibold mb-4 text-green-900">🏆 Leaderboard</h2>
   <p className="text-green-800 mb-4 text-sm md:text-base">
     Final scores from The Masters will be updated here.
