@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 
 export default function PickToParLanding() {
@@ -34,11 +33,14 @@ export default function PickToParLanding() {
           </ul>
         </section>
 
-        <iframe
-          src="https://your-typeform-link.typeform.com/to/example"
-          className="w-full max-w-xl h-[600px] rounded-xl border-none shadow-xl mb-10"
-          title="Pick to Par Entry Form"
-        ></iframe>
+        <a
+  href="https://form.typeform.com/to/AZc1YvwD"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="bg-green-700 hover:bg-green-800 text-white font-semibold px-6 py-3 rounded-xl shadow-lg mb-10"
+>
+  👉 Click here to enter your Pick to Par team
+</a>
 
         <section className="bg-green-100 bg-opacity-90 p-4 md:p-6 rounded-xl w-full max-w-xl text-center shadow-lg mb-10">
           <h2 className="text-xl md:text-2xl font-semibold mb-4 text-green-900">🏆 Leaderboard</h2>
@@ -77,7 +79,7 @@ export default function PickToParLanding() {
 
       <footer className="text-center text-green-200 text-sm py-6 bg-green-900 bg-opacity-90">
         <p>
-          Questions? Contact us at <a href="mailto:your@email.com" className="underline">your@email.com</a>
+          Questions? Contact us at <a href="mailto:picktopar@gmail.com" className="underline">your@email.com</a>
         </p>
         <p>&copy; 2025 Pick to Par</p>
       </footer>
