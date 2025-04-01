@@ -101,61 +101,40 @@ export default function PickToParLanding() {
           </p>
           <form
             className="text-left space-y-4"
-            onSubmit={(e) => {
-              e.preventDefault();
-              const formData = {
-                name: e.target.name.value,
-                top10: e.target.top10.value,
-                top20: e.target.top20.value,
-                top30: e.target.top30.value,
-                wildcard: e.target.wildcard.value,
-              };
-
-              fetch("https://script.google.com/macros/s/AKfycbxwZJzhkipSvla7O0XA59-X6WIHjzrx1xlaj-mykjp7shyOS686C1cVrWBOTHG2H2QiCg/exec", {
-                method: "POST",
-                headers: {
-                  "Content-Type": "application/json",
-                },
-                body: JSON.stringify(formData),
-              })
-                .then((res) => res.text())
-                .then((text) => {
-                console.log("Response:", text);
-                alert("Response received! Check the console.");
-              })
-                .catch((err) => alert("Something went wrong."));
-            }}>
+            action="https://script.google.com/macros/s/AKfycbxwZJzhkipSvla7O0XA59-X6WIHjzrx1xlaj-mykjp7shyOS686C1cVrWBOTHG2H2QiCg/exec"
+            method="POST"
+            target="_blank">
   <div>
     <label htmlFor="name" className="block text-green-900 font-semibold mb-1">Your Name</label>
     <input type="text" name="name" id="name" placeholder="Enter your name" className="w-full px-4 py-2 rounded border" required />
   </div>
   <div>
-              <label htmlFor="top10" className="block text-green-900 font-semibold mb-1">Top 10 Player</label>
-              <select name="top10" id="top10" className="w-full px-4 py-2 rounded border">
-                <option value="">Select</option>
-                {getTierOptions(1, 10)}
-              </select>
-            </div>
-            <div>
-              <label htmlFor="top20" className="block text-green-900 font-semibold mb-1">Top 20 Player (not in Top 10)</label>
-              <select name="top20" id="top20" className="w-full px-4 py-2 rounded border">
-                <option value="">Select</option>
-                {getTierOptions(11, 20)}
-              </select>
-            </div>
-            <div>
-              <label htmlFor="top30" className="block text-green-900 font-semibold mb-1">Top 30 Player (not in Top 20)</label>
-              <select name="top30" id="top30" className="w-full px-4 py-2 rounded border">
-                <option value="">Select</option>
-                {getTierOptions(21, 30)}
-              </select>
-            </div>
-            <div>
-  <label htmlFor="wildcard" className="block text-green-900 font-semibold mb-1">Wildcard (any player in the field)</label>
-  <input type="text" name="wildcard" id="wildcard" placeholder="Enter player name" className="w-full px-4 py-2 rounded border" />
-</div>
-            <button type="submit" className="bg-green-700 hover:bg-green-800 text-white px-6 py-2 rounded-xl shadow">Submit Picks</button>
-          </form>
+    <label htmlFor="top10" className="block text-green-900 font-semibold mb-1">Top 10 Player</label>
+    <select name="top10" id="top10" className="w-full px-4 py-2 rounded border">
+      <option value="">Select</option>
+      {getTierOptions(1, 10)}
+    </select>
+  </div>
+  <div>
+    <label htmlFor="top20" className="block text-green-900 font-semibold mb-1">Top 20 Player (not in Top 10)</label>
+    <select name="top20" id="top20" className="w-full px-4 py-2 rounded border">
+      <option value="">Select</option>
+      {getTierOptions(11, 20)}
+    </select>
+  </div>
+  <div>
+    <label htmlFor="top30" className="block text-green-900 font-semibold mb-1">Top 30 Player (not in Top 20)</label>
+    <select name="top30" id="top30" className="w-full px-4 py-2 rounded border">
+      <option value="">Select</option>
+      {getTierOptions(21, 30)}
+    </select>
+  </div>
+  <div>
+    <label htmlFor="wildcard" className="block text-green-900 font-semibold mb-1">Wildcard (any player in the field)</label>
+    <input type="text" name="wildcard" id="wildcard" placeholder="Enter player name" className="w-full px-4 py-2 rounded border" />
+  </div>
+  <button type="submit" className="bg-green-700 hover:bg-green-800 text-white px-6 py-2 rounded-xl shadow">Submit Picks</button>
+</form>
         </section>
 
         <section className="bg-green-100 bg-opacity-90 p-4 md:p-6 rounded-xl w-full max-w-4xl text-center shadow-lg mb-10">
