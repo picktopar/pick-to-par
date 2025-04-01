@@ -46,6 +46,38 @@ function Leaderboard() {
   );
 }
 
+function PickForm() {
+  const [rankings, setRankings] = useState([]);
+
+  useEffect(() => {
+    fetch("https://datagolf.com/api/rankings/world?format=csv")
+      .then(res => res.text())
+      .then(csv => {
+        Papa.parse(csv, {
+          header: true,
+          skipEmptyLines: true,
+          complete: (results) => setRankings(results.data)
+        });
+      });
+  }, []);
+
+  const getTier = (start, end) => {
+    return rankings.slice(start - 1, end).map((player, i) => (
+      <option key={i} value={player.Player}>{player.Player}</option>
+    ));
+  };
+
+  const getWildcard = () => {
+    return rankings.slice(30).map((player, i) => (
+      <option key={i} value={player.Player}>{player.Player}</option>
+    ));
+  };
+
+  return (
+    <PickForm />
+  );
+}
+
 export default function PickToParLanding() {
   const [showLeaderboard, setShowLeaderboard] = useState(false);
 
@@ -74,14 +106,62 @@ export default function PickToParLanding() {
           </ul>
         </section>
 
-        <a
-  href="https://form.typeform.com/to/AZc1YvwD"
-  target="_blank"
-  rel="noopener noreferrer"
-  className="bg-green-700 hover:bg-green-800 text-white font-semibold px-6 py-3 rounded-xl shadow-lg mb-10"
->
-  👉 Click here to enter your Pick to Par team
-</a>
+        <section className="bg-green-100 bg-opacity-90 p-4 md:p-6 rounded-xl w-full max-w-xl text-center mb-10 shadow-lg">
+  <h2 className="text-xl md:text-2xl font-semibold mb-4 text-green-900">🎯 Make Your Picks</h2>
+  <p className="text-green-800 mb-4 text-sm md:text-base">
+    Select players for each tier based on the live Data Golf rankings. You may only choose eligible players from each range.
+  </p>
+  
+  <form
+    className="text-left space-y-4"
+    onSubmit={(e) => {
+      e.preventDefault();
+      const formData = {
+        top10: e.target.top10.value,
+        top20: e.target.top20.value,
+        top30: e.target.top30.value,
+        wildcard: e.target.wildcard.value,
+      };
+
+      fetch("https://script.google.com/macros/s/AKfycbzM0pzsPAheUSnLYsStlTgWs2AswZdxryvnTGVr7-1zZ8Pg0_vVNxGDKcZPPdCt6nikqA/exec", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      })
+        .then((res) => res.json())
+        .then((data) => alert("Picks submitted successfully!"))
+        .catch((err) => alert("Something went wrong."));
+    }}
+  >
+    <div>
+      <label htmlFor="top10" className="block text-green-900 font-semibold mb-1">Top 10 Player</label>
+      <select name="top10" id="top10" className="w-full px-4 py-2 rounded border">
+        <option value="">Loading...</option>
+      </select>
+    </div>
+    <div>
+      <label htmlFor="top20" className="block text-green-900 font-semibold mb-1">Top 20 Player (not in Top 10)</label>
+      <select name="top20" id="top20" className="w-full px-4 py-2 rounded border">
+        <option value="">Loading...</option>
+      </select>
+    </div>
+    <div>
+      <label htmlFor="top30" className="block text-green-900 font-semibold mb-1">Top 30 Player (not in Top 20)</label>
+      <select name="top30" id="top30" className="w-full px-4 py-2 rounded border">
+        <option value="">Loading...</option>
+      </select>
+    </div>
+    <div>
+      <label htmlFor="wildcard" className="block text-green-900 font-semibold mb-1">Wildcard (outside Top 30)</label>
+      <select name="wildcard" id="wildcard" className="w-full px-4 py-2 rounded border">
+        <option value="">Loading...</option>
+      </select>
+    </div>
+    <button type="submit" className="bg-green-700 hover:bg-green-800 text-white px-6 py-2 rounded-xl shadow">Submit Picks</button>
+  </form>
+</section>
 
         
 
