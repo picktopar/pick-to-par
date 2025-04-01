@@ -104,11 +104,20 @@ export default function PickToParLanding() {
             onSubmit={(e) => {
               e.preventDefault();
               const formData = {
+                name: e.target.name.value,
                 top10: e.target.top10.value,
                 top20: e.target.top20.value,
                 top30: e.target.top30.value,
                 wildcard: e.target.wildcard.value,
               };
+              e.preventDefault();
+              const formData = {
+  name: e.target.name.value,
+  top10: e.target.top10.value,
+  top20: e.target.top20.value,
+  top30: e.target.top30.value,
+  wildcard: e.target.wildcard.value,
+};
 
               fetch("https://script.google.com/macros/s/AKfycbyLMmSxNuzE0epPUJwheMF0-x-R4vUY2s-Ho4eLO9UdUrzSKaNfssO9jvGvQcIzsHd_0g/exec", {
                 method: "POST",
