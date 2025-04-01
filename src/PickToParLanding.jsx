@@ -48,7 +48,7 @@ export default function PickToParLanding() {
   const [showLeaderboard, setShowLeaderboard] = useState(false);
 
   useEffect(() => {
-    fetch("https://datagolf.com/api/rankings/world?format=csv")
+    fetch("https://docs.google.com/spreadsheets/d/e/2PACX-1vQP6mmzpkhuthP9WZbvA94boWLag85E1mvDrH9X0wVG6tZp3bqe2X7xPcdtErb5kNeT5Jl_kByzOhVN/pub?output=csv")
       .then((res) => res.text())
       .then((csv) => {
         Papa.parse(csv, {
@@ -83,7 +83,7 @@ export default function PickToParLanding() {
         <section className="bg-green-100 bg-opacity-90 p-4 md:p-6 rounded-xl w-full max-w-xl text-center mb-10 shadow-lg">
           <h2 className="text-xl md:text-2xl font-semibold mb-4 text-green-900">How It Works</h2>
           <ul className="text-green-800 space-y-2 text-sm md:text-base">
-            <li>📊 Choose players based on <a href="https://datagolf.com/datagolf-rankings" target="_blank" rel="noopener noreferrer" className="underline text-green-900 font-semibold">Data Golf Rankings</a></li>
+            <li>📊 Choose players based on <a href="https://datagolf.com/datagolf-rankings" target="_blank" rel="noopener noreferrer" className="underline text-green-900 font-semibold">Data Golf Rankings</a> and the <a href="https://www.masters.com/en_US/players/player_list.html" target="_blank" rel="noopener noreferrer" className="underline text-green-900 font-semibold">Masters Field</a></li>
             <li>✅ Pick 1 player from the Top 10</li>
             <li>✅ 1 from the Top 20 (not in Top 10)</li>
             <li>✅ 1 from the Top 30 (not in Top 20)</li>
@@ -144,12 +144,9 @@ export default function PickToParLanding() {
               </select>
             </div>
             <div>
-              <label htmlFor="wildcard" className="block text-green-900 font-semibold mb-1">Wildcard (outside Top 30)</label>
-              <select name="wildcard" id="wildcard" className="w-full px-4 py-2 rounded border">
-                <option value="">Select</option>
-                {getWildcardOptions()}
-              </select>
-            </div>
+  <label htmlFor="wildcard" className="block text-green-900 font-semibold mb-1">Wildcard (any player in the field)</label>
+  <input type="text" name="wildcard" id="wildcard" placeholder="Enter player name" className="w-full px-4 py-2 rounded border" />
+</div>
             <button type="submit" className="bg-green-700 hover:bg-green-800 text-white px-6 py-2 rounded-xl shadow">Submit Picks</button>
           </form>
         </section>
