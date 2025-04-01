@@ -1,9 +1,10 @@
 
 
-import React, { useState, useEffect, useState as useComponentState } from "react";
+import React, { useState, useEffect } from "react";
+
 
 function Leaderboard() {
-  const [data, setData] = useComponentState([]);
+  const [data, setData] = useState([]);
 
   useEffect(() => {
     fetch("https://docs.google.com/spreadsheets/d/e/2PACX-1vTFQU30eyGAX_I-XyC7coN2UqWwiDNVyURvdOraAeeG9_40l-hx1LHaXbJAcbf4Dj43i5xT9z_ARtPW/pub?gid=2006483502&single=true&output=csv")
