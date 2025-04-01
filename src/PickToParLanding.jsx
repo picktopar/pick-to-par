@@ -85,17 +85,7 @@ export default function PickToParLanding() {
   👉 Click here to enter your Pick to Par team
 </a>
 
-        <section className="bg-green-100 bg-opacity-90 p-4 md:p-6 rounded-xl w-full max-w-4xl text-center shadow-lg mb-10">
-  <h2 className="text-xl md:text-2xl font-semibold mb-4 text-green-900">📈 Data Golf Rankings</h2>
-  <p className="text-green-800 mb-4 text-sm md:text-base">
-    View the latest Data Golf rankings directly from their site.
-  </p>
-  <iframe
-    src="https://datagolf.com/datagolf-rankings"
-    className="w-full h-[600px] rounded-xl border-none shadow-md"
-    title="Data Golf Rankings"
-  ></iframe>
-</section>
+        
 
         <section className="bg-green-100 bg-opacity-90 p-4 md:p-6 rounded-xl w-full max-w-xl text-center shadow-lg mb-10">
   <h2 className="text-xl md:text-2xl font-semibold mb-4 text-green-900">🏆 Leaderboard</h2>
@@ -105,17 +95,7 @@ export default function PickToParLanding() {
   <Leaderboard />
         </section>
 
-        <section className="bg-green-100 bg-opacity-90 p-4 md:p-6 rounded-xl w-full max-w-4xl text-center shadow-lg mb-10">
-          <h2 className="text-xl md:text-2xl font-semibold mb-4 text-green-900">📈 Data Golf Rankings</h2>
-          <p className="text-green-800 mb-4 text-sm md:text-base">
-            View the latest Data Golf rankings directly from their site.
-          </p>
-          <iframe
-            src="https://datagolf.com/datagolf-rankings"
-            className="w-full h-[600px] rounded-xl border-none shadow-md"
-            title="Data Golf Rankings"
-          ></iframe>
-        </section>
+        
 
         <section className="bg-green-100 bg-opacity-90 p-4 md:p-6 rounded-xl w-full max-w-4xl text-center shadow-lg">
           <h2 className="text-xl md:text-2xl font-semibold mb-4 text-green-900">📋 Full Masters Leaderboard</h2>
