@@ -1,6 +1,46 @@
 
 
-import React, { useState } from "react";
+import React, { useState, useEffect, useState as useComponentState } from "react";
+import Papa from "papaparse";
+
+function Leaderboard() {
+  const [data, setData] = useComponentState([]);
+
+  useEffect(() => {
+    fetch("https://docs.google.com/spreadsheets/d/e/2PACX-1vTFQU30eyGAX_I-XyC7coN2UqWwiDNVyURvdOraAeeG9_40l-hx1LHaXbJAcbf4Dj43i5xT9z_ARtPW/pub?gid=2006483502&single=true&output=csv")
+      .then(res => res.text())
+      .then(csv => {
+        Papa.parse(csv, {
+          header: true,
+          skipEmptyLines: true,
+          complete: (results) => setData(results.data)
+        });
+      });
+  }, []);
+
+  return (
+    <div className="overflow-x-auto">
+      <table className="table-auto w-full text-left border-collapse">
+        <thead>
+          <tr className="bg-green-700 text-white">
+            {data[0] && Object.keys(data[0]).map((key, i) => (
+              <th key={i} className="px-4 py-2 border-b border-green-200">{key}</th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {data.map((row, i) => (
+            <tr key={i} className="odd:bg-green-50">
+              {Object.values(row).map((value, j) => (
+                <td key={j} className="px-4 py-2 border-b border-green-100">{value}</td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
 
 export default function PickToParLanding() {
   const [showLeaderboard, setShowLeaderboard] = useState(false);
@@ -45,19 +85,37 @@ export default function PickToParLanding() {
   👉 Click here to enter your Pick to Par team
 </a>
 
+        <section className="bg-green-100 bg-opacity-90 p-4 md:p-6 rounded-xl w-full max-w-4xl text-center shadow-lg mb-10">
+  <h2 className="text-xl md:text-2xl font-semibold mb-4 text-green-900">📈 Data Golf Rankings</h2>
+  <p className="text-green-800 mb-4 text-sm md:text-base">
+    View the latest Data Golf rankings directly from their site.
+  </p>
+  <iframe
+    src="https://datagolf.com/datagolf-rankings"
+    className="w-full h-[600px] rounded-xl border-none shadow-md"
+    title="Data Golf Rankings"
+  ></iframe>
+</section>
+
         <section className="bg-green-100 bg-opacity-90 p-4 md:p-6 rounded-xl w-full max-w-xl text-center shadow-lg mb-10">
   <h2 className="text-xl md:text-2xl font-semibold mb-4 text-green-900">🏆 Leaderboard</h2>
   <p className="text-green-800 mb-4 text-sm md:text-base">
     Final scores from The Masters will be updated here.
   </p>
-  <iframe
-    src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTFQU30eyGAX_I-XyC7coN2UqWwiDNVyURvdOraAeeG9_40l-hx1LHaXbJAcbf4Dj43i5xT9z_ARtPW/pubhtml?gid=2006483502&single=true&widget=true&headers=false"
-    className="w-full h-[600px] rounded-xl border-none shadow-md"
-    title="Leaderboard"
-  ></iframe>
+  <Leaderboard />
         </section>
 
-        
+        <section className="bg-green-100 bg-opacity-90 p-4 md:p-6 rounded-xl w-full max-w-4xl text-center shadow-lg mb-10">
+          <h2 className="text-xl md:text-2xl font-semibold mb-4 text-green-900">📈 Data Golf Rankings</h2>
+          <p className="text-green-800 mb-4 text-sm md:text-base">
+            View the latest Data Golf rankings directly from their site.
+          </p>
+          <iframe
+            src="https://datagolf.com/datagolf-rankings"
+            className="w-full h-[600px] rounded-xl border-none shadow-md"
+            title="Data Golf Rankings"
+          ></iframe>
+        </section>
 
         <section className="bg-green-100 bg-opacity-90 p-4 md:p-6 rounded-xl w-full max-w-4xl text-center shadow-lg">
           <h2 className="text-xl md:text-2xl font-semibold mb-4 text-green-900">📋 Full Masters Leaderboard</h2>
