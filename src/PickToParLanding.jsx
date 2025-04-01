@@ -80,7 +80,6 @@ export default function PickToParLanding() {
       </header>
 
       <main className="flex flex-col items-center px-4">
-        {/* HOW IT WORKS */}
         <section className="bg-green-100 bg-opacity-90 p-4 md:p-6 rounded-xl w-full max-w-xl text-center mb-10 shadow-lg">
           <h2 className="text-xl md:text-2xl font-semibold mb-4 text-green-900">How It Works</h2>
           <ul className="text-green-800 space-y-2 text-sm md:text-base">
@@ -95,9 +94,11 @@ export default function PickToParLanding() {
           </ul>
         </section>
 
-        {/* MAKE PICKS */}
         <section className="bg-green-100 bg-opacity-90 p-4 md:p-6 rounded-xl w-full max-w-xl text-center mb-10 shadow-lg">
           <h2 className="text-xl md:text-2xl font-semibold mb-4 text-green-900">🎯 Make Your Picks</h2>
+          <p className="text-green-800 mb-4 text-sm md:text-base">
+            Select players for each tier based on the live Data Golf rankings. You may only choose eligible players from each range.
+          </p>
           <form
             className="text-left space-y-4"
             onSubmit={(e) => {
@@ -153,7 +154,6 @@ export default function PickToParLanding() {
           </form>
         </section>
 
-        {/* DATA GOLF RANKINGS */}
         <section className="bg-green-100 bg-opacity-90 p-4 md:p-6 rounded-xl w-full max-w-4xl text-center shadow-lg mb-10">
           <h2 className="text-xl md:text-2xl font-semibold mb-4 text-green-900">📈 Data Golf Rankings</h2>
           <p className="text-green-800 mb-4 text-sm md:text-base">
@@ -166,7 +166,6 @@ export default function PickToParLanding() {
           ></iframe>
         </section>
 
-        {/* LEADERBOARD */}
         <section className="bg-green-100 bg-opacity-90 p-4 md:p-6 rounded-xl w-full max-w-xl text-center shadow-lg mb-10">
           <h2 className="text-xl md:text-2xl font-semibold mb-4 text-green-900">🏆 Leaderboard</h2>
           <p className="text-green-800 mb-4 text-sm md:text-base">
@@ -175,7 +174,6 @@ export default function PickToParLanding() {
           <Leaderboard />
         </section>
 
-        {/* MASTERS LEADERBOARD */}
         <section className="bg-green-100 bg-opacity-90 p-4 md:p-6 rounded-xl w-full max-w-4xl text-center shadow-lg">
           <h2 className="text-xl md:text-2xl font-semibold mb-4 text-green-900">📋 Full Masters Leaderboard</h2>
           <p className="text-green-800 mb-4 text-sm md:text-base">
