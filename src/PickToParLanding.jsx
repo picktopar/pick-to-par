@@ -118,8 +118,11 @@ export default function PickToParLanding() {
                 },
                 body: JSON.stringify(formData),
               })
-                .then((res) => res.json())
-                .then((data) => alert("Picks submitted successfully!"))
+                .then((res) => res.text())
+                .then((text) => {
+                console.log("Response:", text);
+                alert("Response received! Check the console.");
+              })
                 .catch((err) => alert("Something went wrong."));
             }}>
   <div>
