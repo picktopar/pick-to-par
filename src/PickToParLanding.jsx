@@ -111,7 +111,7 @@ export default function PickToParLanding() {
                 wildcard: e.target.wildcard.value,
               };
 
-              fetch("https://script.google.com/macros/library/d/1CcL3-VwxGMot5tCKNOdDvVtha4iQzg_Ea4D8RaBqMX1I5cbCr4vQVoge/2", {
+              fetch("https://script.google.com/macros/s/AKfycbxSr66-X9RQtSDW_ugsruCY2TVhNdqs_vtQc4uGxbMxGmDVkS9FMgmyoGFqp52PhqQctA/exec", {
                 method: "POST",
                 headers: {
                   "Content-Type": "application/json",
