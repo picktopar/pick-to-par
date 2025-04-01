@@ -1,7 +1,4 @@
-
-
 import React, { useState, useEffect } from "react";
-
 
 function Leaderboard() {
   const [data, setData] = useState([]);
@@ -22,24 +19,24 @@ function Leaderboard() {
     <div className="overflow-x-auto max-w-full">
       <div className="w-full overflow-hidden">
         <div className="min-w-full">
-      <table className="table-auto w-full text-left border-collapse">
-        <thead>
-          <tr className="bg-green-700 text-white">
-            {data[0] && Object.keys(data[0]).map((key, i) => (
-              <th key={i} className="px-4 py-2 border-b border-green-200">{key}</th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {data.map((row, i) => (
-            <tr key={i} className="odd:bg-green-50">
-              {Object.values(row).map((value, j) => (
-                <td key={j} className="px-4 py-2 border-b border-green-100">{value}</td>
+          <table className="table-auto w-full text-left border-collapse">
+            <thead>
+              <tr className="bg-green-700 text-white">
+                {data[0] && Object.keys(data[0]).map((key, i) => (
+                  <th key={i} className="px-4 py-2 border-b border-green-200">{key}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {data.map((row, i) => (
+                <tr key={i} className="odd:bg-green-50">
+                  {Object.values(row).map((value, j) => (
+                    <td key={j} className="px-4 py-2 border-b border-green-100">{value}</td>
+                  ))}
+                </tr>
               ))}
-            </tr>
-          ))}
-        </tbody>
-      </table>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
@@ -47,8 +44,8 @@ function Leaderboard() {
 }
 
 export default function PickToParLanding() {
-  
   const [rankings, setRankings] = useState([]);
+  const [showLeaderboard, setShowLeaderboard] = useState(false);
 
   useEffect(() => {
     fetch("https://datagolf.com/api/rankings/world?format=csv")
@@ -71,7 +68,6 @@ export default function PickToParLanding() {
     rankings.slice(30).map((player, i) => (
       <option key={i} value={player.Player}>{player.Player}</option>
     ));
-  
 
   return (
     <div
@@ -84,7 +80,8 @@ export default function PickToParLanding() {
       </header>
 
       <main className="flex flex-col items-center px-4">
-                <section className="bg-green-100 bg-opacity-90 p-4 md:p-6 rounded-xl w-full max-w-xl text-center mb-10 shadow-lg">
+        {/* HOW IT WORKS */}
+        <section className="bg-green-100 bg-opacity-90 p-4 md:p-6 rounded-xl w-full max-w-xl text-center mb-10 shadow-lg">
           <h2 className="text-xl md:text-2xl font-semibold mb-4 text-green-900">How It Works</h2>
           <ul className="text-green-800 space-y-2 text-sm md:text-base">
             <li>📊 Choose players based on <a href="https://datagolf.com/datagolf-rankings" target="_blank" rel="noopener noreferrer" className="underline text-green-900 font-semibold">Data Golf Rankings</a></li>
@@ -98,91 +95,87 @@ export default function PickToParLanding() {
           </ul>
         </section>
 
+        {/* MAKE PICKS */}
         <section className="bg-green-100 bg-opacity-90 p-4 md:p-6 rounded-xl w-full max-w-xl text-center mb-10 shadow-lg">
-  <h2 className="text-xl md:text-2xl font-semibold mb-4 text-green-900">🎯 Make Your Picks</h2>
-  <p className="text-green-800 mb-4 text-sm md:text-base">
-    Select players for each tier based on the live Data Golf rankings. You may only choose eligible players from each range.
-  </p>
-  
-  <form
-    className="text-left space-y-4"
-    onSubmit={(e) => {
-      e.preventDefault();
-      const formData = {
-        top10: e.target.top10.value,
-        top20: e.target.top20.value,
-        top30: e.target.top30.value,
-        wildcard: e.target.wildcard.value,
-      };
+          <h2 className="text-xl md:text-2xl font-semibold mb-4 text-green-900">🎯 Make Your Picks</h2>
+          <form
+            className="text-left space-y-4"
+            onSubmit={(e) => {
+              e.preventDefault();
+              const formData = {
+                top10: e.target.top10.value,
+                top20: e.target.top20.value,
+                top30: e.target.top30.value,
+                wildcard: e.target.wildcard.value,
+              };
 
-      fetch("https://script.google.com/macros/s/AKfycbzM0pzsPAheUSnLYsStlTgWs2AswZdxryvnTGVr7-1zZ8Pg0_vVNxGDKcZPPdCt6nikqA/exec", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      })
-        .then((res) => res.json())
-        .then((data) => alert("Picks submitted successfully!"))
-        .catch((err) => alert("Something went wrong."));
-    }}
-  >
-    <div>
-      <label htmlFor="top10" className="block text-green-900 font-semibold mb-1">Top 10 Player</label>
-      <select name="top10" id="top10" className="w-full px-4 py-2 rounded border">
-  <option value="">Select</option>
-  {getTierOptions(1, 10)}
-</select>
-    </div>
-    <div>
-      <label htmlFor="top20" className="block text-green-900 font-semibold mb-1">Top 20 Player (not in Top 10)</label>
-      <select name="top20" id="top20" className="w-full px-4 py-2 rounded border">
-  <option value="">Select</option>
-  {getTierOptions(11, 20)}
-</select>
-    </div>
-    <div>
-      <label htmlFor="top30" className="block text-green-900 font-semibold mb-1">Top 30 Player (not in Top 20)</label>
-      <select name="top30" id="top30" className="w-full px-4 py-2 rounded border">
-  <option value="">Select</option>
-  {getTierOptions(21, 30)}
-</select>
-    </div>
-    <div>
-      <label htmlFor="wildcard" className="block text-green-900 font-semibold mb-1">Wildcard (outside Top 30)</label>
-      <select name="wildcard" id="wildcard" className="w-full px-4 py-2 rounded border">
-  <option value="">Select</option>
-  {getWildcardOptions()}
-</select>
-    </div>
-    <button type="submit" className="bg-green-700 hover:bg-green-800 text-white px-6 py-2 rounded-xl shadow">Submit Picks</button>
-  </form>
-</section>
-
-        
-
-        <section className="bg-green-100 bg-opacity-90 p-4 md:p-6 rounded-xl w-full max-w-4xl text-center shadow-lg mb-10">
-  <h2 className="text-xl md:text-2xl font-semibold mb-4 text-green-900">📈 Data Golf Rankings</h2>
-  <p className="text-green-800 mb-4 text-sm md:text-base">
-    View the latest Data Golf rankings directly from their site.
-  </p>
-  <iframe
-    src="https://datagolf.com/datagolf-rankings"
-    className="w-full h-[600px] rounded-xl border-none shadow-md"
-    title="Data Golf Rankings"
-  ></iframe>
-</section>
-
-<section className="bg-green-100 bg-opacity-90 p-4 md:p-6 rounded-xl w-full max-w-xl text-center shadow-lg mb-10">
-  <h2 className="text-xl md:text-2xl font-semibold mb-4 text-green-900">🏆 Leaderboard</h2>
-  <p className="text-green-800 mb-4 text-sm md:text-base">
-    Final scores from The Masters will be updated here.
-  </p>
-  <Leaderboard />
+              fetch("https://script.google.com/macros/s/AKfycbzM0pzsPAheUSnLYsStlTgWs2AswZdxryvnTGVr7-1zZ8Pg0_vVNxGDKcZPPdCt6nikqA/exec", {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify(formData),
+              })
+                .then((res) => res.json())
+                .then((data) => alert("Picks submitted successfully!"))
+                .catch((err) => alert("Something went wrong."));
+            }}
+          >
+            <div>
+              <label htmlFor="top10" className="block text-green-900 font-semibold mb-1">Top 10 Player</label>
+              <select name="top10" id="top10" className="w-full px-4 py-2 rounded border">
+                <option value="">Select</option>
+                {getTierOptions(1, 10)}
+              </select>
+            </div>
+            <div>
+              <label htmlFor="top20" className="block text-green-900 font-semibold mb-1">Top 20 Player (not in Top 10)</label>
+              <select name="top20" id="top20" className="w-full px-4 py-2 rounded border">
+                <option value="">Select</option>
+                {getTierOptions(11, 20)}
+              </select>
+            </div>
+            <div>
+              <label htmlFor="top30" className="block text-green-900 font-semibold mb-1">Top 30 Player (not in Top 20)</label>
+              <select name="top30" id="top30" className="w-full px-4 py-2 rounded border">
+                <option value="">Select</option>
+                {getTierOptions(21, 30)}
+              </select>
+            </div>
+            <div>
+              <label htmlFor="wildcard" className="block text-green-900 font-semibold mb-1">Wildcard (outside Top 30)</label>
+              <select name="wildcard" id="wildcard" className="w-full px-4 py-2 rounded border">
+                <option value="">Select</option>
+                {getWildcardOptions()}
+              </select>
+            </div>
+            <button type="submit" className="bg-green-700 hover:bg-green-800 text-white px-6 py-2 rounded-xl shadow">Submit Picks</button>
+          </form>
         </section>
 
-        
+        {/* DATA GOLF RANKINGS */}
+        <section className="bg-green-100 bg-opacity-90 p-4 md:p-6 rounded-xl w-full max-w-4xl text-center shadow-lg mb-10">
+          <h2 className="text-xl md:text-2xl font-semibold mb-4 text-green-900">📈 Data Golf Rankings</h2>
+          <p className="text-green-800 mb-4 text-sm md:text-base">
+            View the latest Data Golf rankings directly from their site.
+          </p>
+          <iframe
+            src="https://datagolf.com/datagolf-rankings"
+            className="w-full h-[600px] rounded-xl border-none shadow-md"
+            title="Data Golf Rankings"
+          ></iframe>
+        </section>
 
+        {/* LEADERBOARD */}
+        <section className="bg-green-100 bg-opacity-90 p-4 md:p-6 rounded-xl w-full max-w-xl text-center shadow-lg mb-10">
+          <h2 className="text-xl md:text-2xl font-semibold mb-4 text-green-900">🏆 Leaderboard</h2>
+          <p className="text-green-800 mb-4 text-sm md:text-base">
+            Final scores from The Masters will be updated here.
+          </p>
+          <Leaderboard />
+        </section>
+
+        {/* MASTERS LEADERBOARD */}
         <section className="bg-green-100 bg-opacity-90 p-4 md:p-6 rounded-xl w-full max-w-4xl text-center shadow-lg">
           <h2 className="text-xl md:text-2xl font-semibold mb-4 text-green-900">📋 Full Masters Leaderboard</h2>
           <p className="text-green-800 mb-4 text-sm md:text-base">
